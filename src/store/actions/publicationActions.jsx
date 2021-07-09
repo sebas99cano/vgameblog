@@ -1,16 +1,18 @@
-import {LOAD_PUBLICATIONS, LOADING, ERROR, DELETE_PUBLICATION, CREATE_PUBLICATIONS} from "../types/types";
+import {LOAD_PUBLICATIONS, ERROR, DELETE_PUBLICATION, CREATE_PUBLICATIONS} from "../types/types";
 import {db} from "../../services/firebase";
 
 export const createPublication = (publication) => async (dispatch) => {
     try {
         await db.ref("publications").push({
-            ...publication
-        });
+                ...publication
+            },);
         dispatch({
             type: CREATE_PUBLICATIONS,
-            publication: publication
-        });
+            payload: publication
+        })
+
     } catch (error) {
+        console.log(error)
         dispatch({
             type: ERROR,
             payload: "posts could not be saved"
@@ -50,13 +52,14 @@ export const deletePublication = (publication) => async (dispatch) => {
                     ref = snap;
                 }
             });
+            ref = (db.ref("publications").child(ref.key))
+            ref.remove();
+            dispatch({
+                type: DELETE_PUBLICATION,
+                payload: publication.id
+            });
         });
-        ref = (db.ref("publications").child(ref.key))
-        await ref.remove();
-        dispatch({
-            type: DELETE_PUBLICATION,
-            payload: publication.id
-        });
+
     } catch (error) {
         console.log(error)
         dispatch({

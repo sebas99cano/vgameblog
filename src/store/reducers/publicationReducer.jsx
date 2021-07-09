@@ -12,7 +12,7 @@ const publicationReducer = (state = initState, action) => {
         case LOAD_PUBLICATIONS:
             return {...state, publications: action.payload, loading: false, error: ''}
         case CREATE_PUBLICATIONS:
-            return {...state, publications: [...state.publications,action.payload], loading: false, error: ''}
+            return {...state, publications: [...state.publications], loading: false, error: ''}
         case DELETE_PUBLICATION:
             let publications = state.publications.filter((pub) => pub.id !== action.payload)
             return {...state, publications: publications}

@@ -37,7 +37,6 @@ class CreatePublication extends Component {
     async handleSubmit(event) {
         event.preventDefault();
         this.state.timestamp=Date.now();
-        console.log(this.state)
         this.props.createPublication(this.state)
         this.setState(this.initialState());
     }

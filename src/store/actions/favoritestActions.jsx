@@ -1,8 +1,7 @@
 import {
     ADD_FAVORITES_PUBLICATION, DELETE_FAVORITES_PUBLICATION,
     ERROR_F,
-    LOAD_FAVORITES_PUBLICATION,
-    LOADING_F
+    LOAD_FAVORITES_PUBLICATION
 } from "../types/types";
 import {db} from "../../services/firebase";
 

@@ -15,7 +15,6 @@ class Dashboard extends Component {
     }
 
     render() {
-        const {publications, favorites} = this.props;
         return (
             <div className="container">
                 <div className="row">
@@ -24,7 +23,7 @@ class Dashboard extends Component {
                     </div>
                     <div className="col-md-8">
                         <CreatePublication/>
-                        <Publication publications={publications} favorites={favorites}/>
+                        <Publication />
                     </div>
                 </div>
             </div>
@@ -32,12 +31,7 @@ class Dashboard extends Component {
     }
 }
 
-const mapStateToProps = (state) => {
-    return {
-        publications: state.publication.publications,
-        favorites: state.favorites.publications
-    }
-}
+
 
 const mapDispatchToProps = (dispatch) => {
     return {
@@ -46,4 +40,4 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 
-export default connect(mapStateToProps,mapDispatchToProps)(Dashboard);
+export default connect(null,mapDispatchToProps)(Dashboard);
