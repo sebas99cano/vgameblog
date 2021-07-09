@@ -12,6 +12,7 @@ import Footer from "./components/layout/Footer";
 import Favorites from "./components/favorites/Favorites";
 
 
+
 function PrivateRoute({component: Component, authenticated, ...rest}) {
     return (
         <Route

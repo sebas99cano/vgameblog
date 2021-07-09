@@ -4,6 +4,25 @@ import {deletePublication} from "../../store/actions/publicationActions";
 import {useDispatch, useSelector} from "react-redux";
 import {addFavorite, deleteFavoritePublication} from "../../store/actions/favoritestActions";
 
+export const Publication = () => {
+    const dispatch = useDispatch();
+    const publications = useSelector((state => state.publication.publications))
+    const favorites = useSelector((state => state.favorites.publications))
+
+    return (
+
+        <div>
+            {publications.map((publication) =>
+                (
+                    <div key={publication.id}>
+                        <PublicationSummary publication={publication} dispatch={dispatch} favorites={favorites}/>
+                        <br/>
+                    </div>
+                ))}
+        </div>
+    )
+}
+
 const PublicationSummary = ({publication, dispatch, favorites}) => {
 
     const isFavorite = () => {
@@ -48,37 +67,3 @@ const PublicationSummary = ({publication, dispatch, favorites}) => {
     )
 }
 
-export const Publication = () => {
-
-    const dispatch = useDispatch();
-    const publications = useSelector((state => state.publication.publications))
-    const favorites = useSelector((state => state.favorites.publications))
-    console.log(publications.length)
-    publications.map(publication => {
-        console.log(publication.id)
-    })
-    return (
-
-        <div>
-            {publications.map((publication) =>
-                (
-                    <div key={publication.id}>
-                        <PublicationSummary publication={publication} dispatch={dispatch} favorites={favorites}/>
-                        <br/>
-                    </div>
-                ))}
-        </div>
-        /*
-        <div>
-            {publications && publications.map(publication => {
-                    return (
-                        <div key={publication.id}>
-                            <PublicationSummary publication={publication} dispatch={dispatch} favorites={favorites}/>
-                            <br/>
-                        </div>
-                    )
-                }
-            )}
-        </div>*/
-    )
-}
