@@ -9,6 +9,7 @@ import {auth} from "./services/firebase";
 import Home from "./components/Home";
 import NotFoundPage from "./components/NotFoundPage";
 import Footer from "./components/layout/Footer";
+import Comment from "./components/comment/Comment";
 
 
 function PrivateRoute({component: Component, authenticated, ...rest}) {
@@ -76,6 +77,7 @@ class App extends Component {
                 <Switch>
                     <Route exact path="/" component={Home}/>
                     <PrivateRoute exact path="/dashboard" authenticated={this.state.authenticated} component={Dashboard}/>
+                    <PrivateRoute exact path="/comments" authenticated={this.state.authenticated} component={Comment}/>
                     <PublicRoute exact path="/signup" authenticated={this.state.authenticated} component={SignUp}/>
                     <PublicRoute exact path="/login" authenticated={this.state.authenticated} component={LogIn}/>
                     <Route path="*" component={NotFoundPage}/>

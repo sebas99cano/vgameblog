@@ -1,8 +1,9 @@
 import React, {Component} from "react";
-import {createPublication} from "../store/actions/publicationActions";
+import {createPublication} from "../../store/actions/publicationActions";
 import {connect} from "react-redux";
-import {auth} from "../services/firebase";
+import {auth} from "../../services/firebase";
 import {v4 as uuid4} from 'uuid';
+import {Link} from "react-router-dom";
 
 
 class CreatePublication extends Component {
@@ -43,9 +44,10 @@ class CreatePublication extends Component {
 
     render() {
         return (
-            <div className={"border border-radius rounded border-primary mb-3"}>
+            <div className={"border border-radius rounded border-dark mb-3"}>
                 <form onSubmit={this.handleSubmit} className="py-5 px-5 content-align-center form"
                       autoComplete="off">
+                    <h3 className={"text-center"}>Post it</h3>
                     <label>Title</label>
                     <input className={"form-control"} name={"title"} onChange={this.handleChange}
                            value={this.state.title}
@@ -58,7 +60,9 @@ class CreatePublication extends Component {
                               minLength={20}
                               maxLength={500}
                               required={true}/>
-                    <button type="submit" className="btn btn-primary px-5 mt-4">Post</button>
+                    <div className="text-center">
+                        <button type="submit" className="btn btn-dark px-5 mt-4 ">Post</button>
+                    </div>
                 </form>
             </div>
         )

@@ -1,9 +1,9 @@
-import authReducer from "./authReducer";
+import commentReducer from "./commentReducer";
 import publicationReducer from "./publicationReducer";
 import {combineReducers} from "redux";
 
 const rootReducer = combineReducers({
-    auth: authReducer,
+    comment: commentReducer,
     publication: publicationReducer
 })
 

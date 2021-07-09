@@ -1,0 +1,16 @@
+body{
+    width: 100% !important;
+    min-height: 100vh !important;
+    background: -webkit-linear-gradient(-135deg, #ffffff, #868686);
+    background: -o-linear-gradient(-135deg,#ffffff,#868686);
+    background: -moz-linear-gradient(-135deg,#ffffff,#868686);
+    background: linear-gradient(-135deg,#ffffff,#868686);
+}
+
+.color-white{
+    color : white;
+}
+
+.color-black{
+    color: black;
+}

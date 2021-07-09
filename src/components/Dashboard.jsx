@@ -1,8 +1,8 @@
 import React, {Component} from "react";
 import {Game} from "./Game";
-import {Publication} from "./Publication";
+import {Publication} from "./publication/Publication";
 import {connect} from "react-redux";
-import CreatePublication from "./createPublication";
+import CreatePublication from "./publication/createPublication";
 import {receivePublications} from "../store/actions/publicationActions";
 
 class Dashboard extends Component {

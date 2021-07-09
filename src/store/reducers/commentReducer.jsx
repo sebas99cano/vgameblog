@@ -9,7 +9,7 @@ const initState = {
     logoutError:null
 }
 
-const authReducer = (state = initState, action) =>{
+const commentReducer = (state = initState, action) =>{
     switch (action.type){
         case AUTH_SUCCESS:
             return {...state, isAuthenticated: true, user: action.user}
@@ -18,4 +18,4 @@ const authReducer = (state = initState, action) =>{
     }
 }
 
-export default authReducer;
+export default commentReducer;
