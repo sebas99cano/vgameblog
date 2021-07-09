@@ -1,4 +1,5 @@
 import React from "react";
+import {auth} from "../services/firebase";
 
 const PublicationSummary = ({publication}) => {
     return (
@@ -7,8 +8,9 @@ const PublicationSummary = ({publication}) => {
                 <h5 className="card-title">{publication.title}</h5>
                 <h6 className="card-subtitle mb-2 text-muted">{publication.userName}</h6>
                 <p className="card-text">{publication.content}</p>
-                <button className={"btn btn-success mr-1"}>Favoritos</button>
-                <button className={"btn btn-danger"}>Eliminar</button>
+                {(auth().currentUser.uid === publication.user) ?
+                    <button className={"btn btn-danger"}>Delete</button>
+                    :<button className={"btn btn-success mr-1"}>Add</button>}
             </div>
         </div>
     )

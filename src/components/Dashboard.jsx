@@ -5,13 +5,12 @@ import {connect} from "react-redux";
 import CreatePublication from "./createPublication";
 import {receivePublications} from "../store/actions/publicationActions";
 
-
-
 class Dashboard extends Component {
 
      async componentDidMount() {
          this.props.receivePublications()
     }
+
     render() {
         const {publications} = this.props;
         return (

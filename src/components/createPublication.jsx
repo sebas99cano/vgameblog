@@ -8,21 +8,23 @@ import { v4 as uuid4 } from 'uuid';
 class CreatePublication extends Component {
     constructor() {
         super();
-
         this.state = this.initialState();
-
-
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     initialState(){
+        let name = auth().currentUser.displayName
+        if(name === null){
+            name = auth().currentUser.email
+        }
+        console.log("nombre: ",name)
         return{
             id: uuid4(),
             title: '',
             content: '',
             user: auth().currentUser.uid,
-            userName:auth().currentUser.displayName
+            userName:name
         }
     }
 
@@ -34,22 +36,8 @@ class CreatePublication extends Component {
 
     async handleSubmit(event) {
         event.preventDefault();
-        console.log(this.state);
-        try {
-            await db.ref("publications").push({
-                id: this.state.id,
-                title: this.state.title,
-                content: this.state.content,
-                user: this.state.user,
-                userName: this.state.userName
-            });
-            this.props.createPublication(this.state)
-            this.setState(this.initialState());
-
-        } catch (error) {
-            console.log(error)
-        }
-
+        this.props.createPublication(this.state)
+        this.setState(this.initialState());
     }
 
     render() {
