@@ -1,9 +1,9 @@
-import commentReducer from "./commentReducer";
+import favoritesReducer from "./favoritesReducer";
 import publicationReducer from "./publicationReducer";
 import {combineReducers} from "redux";
 
 const rootReducer = combineReducers({
-    comment: commentReducer,
+    favorites: favoritesReducer,
     publication: publicationReducer
 })
 

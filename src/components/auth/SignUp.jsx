@@ -68,7 +68,8 @@ export default class SignUp extends Component {
                             </div>
                             <div className="form-group">
                                 {this.state.error ? <p className="text-danger">{this.state.error}</p> : null}
-                                <button className="btn btn-dark px-5" type="submit">Sign up</button>
+                                <button className="btn btn-dark px-5" type="submit">Sign up <i
+                                    className="bi bi-person-circle" /></button>
                             </div>
                             <br/>
                             <p>Already have an account? <Link to="/login">Login</Link></p>

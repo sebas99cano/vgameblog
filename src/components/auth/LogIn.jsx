@@ -62,7 +62,7 @@ export default class LogIn extends Component {
         return (
             <div className="container text-center">
                 <div className="row">
-                    <div className={"col-md-3"} />
+                    <div className={"col-md-3"}/>
                     <div className="col-md-6">
                         <form
                             className="py-5 px-5 content-align-center"
@@ -70,10 +70,10 @@ export default class LogIn extends Component {
                             onSubmit={this.handleSubmit}>
                             <h1 className={"m-5"}>Login to<Link className="title ml-2" to="/">V-Game Blog</Link></h1>
                             <button className="btn btn-dark mr-2" type="button" onClick={this.googleSignIn}>
-                                Sign in with Google <i className="bi bi-google" />
+                                Sign in with Google <i className="bi bi-google"/>
                             </button>
                             <button className="btn btn-dark mr-2" type="button" onClick={this.githubSignIn}>
-                                Sign in with GitHub <i className="bi bi-github" />
+                                Sign in with GitHub <i className="bi bi-github"/>
                             </button>
                             <p className="lead m-3">OR</p>
                             <hr/>
@@ -103,10 +103,11 @@ export default class LogIn extends Component {
                             </div>
                             <div className="form-group">
                                 {this.state.error ? (<p className="text-danger">{this.state.error}</p>) : null}
-                                <button className="btn btn-dark px-5" type="submit">Login</button>
+                                <button className="btn btn-dark px-5" type="submit">Login <i
+                                    className="bi bi-box-arrow-right" /></button>
                             </div>
                             <hr/>
-                            <p >Don't have an account? <Link to="/signup">Sign up</Link></p>
+                            <p>Don't have an account? <Link to="/signup">Sign up</Link></p>
                         </form>
                     </div>
                 </div>

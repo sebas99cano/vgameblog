@@ -9,7 +9,7 @@ import {auth} from "./services/firebase";
 import Home from "./components/Home";
 import NotFoundPage from "./components/NotFoundPage";
 import Footer from "./components/layout/Footer";
-import Comment from "./components/comment/Comment";
+import Favorites from "./components/favorites/Favorites";
 
 
 function PrivateRoute({component: Component, authenticated, ...rest}) {
@@ -50,6 +50,7 @@ class App extends Component {
     }
 
     componentDidMount() {
+
         auth().onAuthStateChanged((user) => {
             if (user) {
                 this.setState({
@@ -62,6 +63,7 @@ class App extends Component {
                     loading: false,
                 });
             }
+
         });
     }
 
@@ -77,7 +79,7 @@ class App extends Component {
                 <Switch>
                     <Route exact path="/" component={Home}/>
                     <PrivateRoute exact path="/dashboard" authenticated={this.state.authenticated} component={Dashboard}/>
-                    <PrivateRoute exact path="/comments" authenticated={this.state.authenticated} component={Comment}/>
+                    <PrivateRoute exact path="/favorites" authenticated={this.state.authenticated} component={Favorites}/>
                     <PublicRoute exact path="/signup" authenticated={this.state.authenticated} component={SignUp}/>
                     <PublicRoute exact path="/login" authenticated={this.state.authenticated} component={LogIn}/>
                     <Route path="*" component={NotFoundPage}/>

@@ -3,7 +3,6 @@ import {createPublication} from "../../store/actions/publicationActions";
 import {connect} from "react-redux";
 import {auth} from "../../services/firebase";
 import {v4 as uuid4} from 'uuid';
-import {Link} from "react-router-dom";
 
 
 class CreatePublication extends Component {
@@ -19,13 +18,13 @@ class CreatePublication extends Component {
         if (name === null) {
             name = auth().currentUser.email
         }
-        console.log("nombre: ", name)
         return {
             id: uuid4(),
             title: '',
             content: '',
             user: auth().currentUser.uid,
-            userName: name
+            userName: name,
+            timestamp:null
         }
     }
 
@@ -37,7 +36,8 @@ class CreatePublication extends Component {
 
     async handleSubmit(event) {
         event.preventDefault();
-
+        this.state.timestamp=Date.now();
+        console.log(this.state)
         this.props.createPublication(this.state)
         this.setState(this.initialState());
     }
@@ -61,7 +61,7 @@ class CreatePublication extends Component {
                               maxLength={500}
                               required={true}/>
                     <div className="text-center">
-                        <button type="submit" className="btn btn-dark px-5 mt-4 ">Post</button>
+                        <button type="submit" className="btn btn-dark px-5 mt-4 ">Post <i className="bi bi-mailbox"/></button>
                     </div>
                 </form>
             </div>
@@ -75,4 +75,4 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 
-export default connect(null, mapDispatchToProps)(CreatePublication);
+export default connect(null,mapDispatchToProps)(CreatePublication);

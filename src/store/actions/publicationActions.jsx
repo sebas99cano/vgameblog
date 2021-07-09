@@ -1,16 +1,13 @@
-import {LOAD_PUBLICATIONS, LOADING, ERROR, DELETE_PUBLICATION} from "../types/publicationTypes";
+import {LOAD_PUBLICATIONS, LOADING, ERROR, DELETE_PUBLICATION, CREATE_PUBLICATIONS} from "../types/types";
 import {db} from "../../services/firebase";
 
 export const createPublication = (publication) => async (dispatch) => {
-    dispatch({
-        type: LOADING
-    });
     try {
         await db.ref("publications").push({
             ...publication
         });
         dispatch({
-            type: 'CREATE_PUBLICATION',
+            type: CREATE_PUBLICATIONS,
             publication: publication
         });
     } catch (error) {
@@ -22,15 +19,15 @@ export const createPublication = (publication) => async (dispatch) => {
 };
 
 export const receivePublications = () => async (dispatch) => {
-    dispatch({
-        type: LOADING
-    });
     try {
         await db.ref("publications").on("value", snapshot => {
             let publications = [];
             snapshot.forEach((snap) => {
                 publications.push(snap.val());
             });
+            publications.sort(function (a, b) {
+                return b.timestamp - a.timestamp
+            })
             dispatch({
                 type: LOAD_PUBLICATIONS,
                 payload: publications
@@ -45,9 +42,6 @@ export const receivePublications = () => async (dispatch) => {
 }
 
 export const deletePublication = (publication) => async (dispatch) => {
-    dispatch({
-        type: LOADING
-    });
     try {
         let ref = null;
         await db.ref("publications").on("value", snapshot => {

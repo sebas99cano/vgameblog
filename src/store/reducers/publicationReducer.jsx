@@ -1,4 +1,4 @@
-import {LOAD_PUBLICATIONS, LOADING, ERROR, DELETE_PUBLICATION} from "../types/publicationTypes";
+import {LOAD_PUBLICATIONS, LOADING, ERROR, DELETE_PUBLICATION, CREATE_PUBLICATIONS} from "../types/types";
 
 const initState = {
     publications: [],
@@ -11,6 +11,8 @@ const publicationReducer = (state = initState, action) => {
     switch (action.type) {
         case LOAD_PUBLICATIONS:
             return {...state, publications: action.payload, loading: false, error: ''}
+        case CREATE_PUBLICATIONS:
+            return {...state, publications: [...state.publications,action.payload], loading: false, error: ''}
         case DELETE_PUBLICATION:
             let publications = state.publications.filter((pub) => pub.id !== action.payload)
             return {...state, publications: publications}
