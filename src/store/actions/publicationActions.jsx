@@ -1,4 +1,4 @@
-import {LOAD_PUBLICATIONS, LOADING, ERROR} from "../types/publicationTypes";
+import {LOAD_PUBLICATIONS, LOADING, ERROR, DELETE_PUBLICATION} from "../types/publicationTypes";
 import {db} from "../../services/firebase";
 
 export const createPublication = (publication) => async (dispatch) => {
@@ -44,6 +44,33 @@ export const receivePublications = () => async (dispatch) => {
     }
 }
 
+export const deletePublication = (publication) => async (dispatch) => {
+    dispatch({
+        type: LOADING
+    });
+    try {
+        let ref = null;
+        await db.ref("publications").on("value", snapshot => {
+            snapshot.forEach((snap) => {
+                if (snap.val().id === publication.id) {
+                    ref = snap;
+                }
+            });
+        });
+        ref = (db.ref("publications").child(ref.key))
+        await ref.remove();
+        dispatch({
+            type: DELETE_PUBLICATION,
+            payload: publication.id
+        });
+    } catch (error) {
+        console.log(error)
+        dispatch({
+            type: ERROR,
+            payload: "posts could not be removed"
+        });
+    }
+}
 
 
 
